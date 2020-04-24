@@ -101,7 +101,7 @@ const StockTimeSeriesView: React.FC = () => {
       }}
     >
       <TextField
-        size="small"
+        size="medium"
         type="search"
         variant="outlined"
         name="symbol"
