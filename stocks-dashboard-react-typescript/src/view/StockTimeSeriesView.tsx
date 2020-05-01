@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Select, MenuItem, TextField } from '@material-ui/core';
-import { parseData } from '../utils/helperFunctions/parseData';
+import { parseDataStocks } from '../utils/helperFunctions/parseData';
 import { Line } from 'react-chartjs-2';
-import { ResponseData, SearchParamters } from '../utils/interfaces';
+import { ResponseDataStocks, SearchParamtersStocks } from '../utils/interfaces';
 import { Loading } from '../components/loader/Loading';
 
 const StockTimeSeriesView: React.FC = () => {
-  const [searchParamters, setSearchParamaters] = useState<SearchParamters>({
+  const [searchParamters, setSearchParamaters] = useState<
+    SearchParamtersStocks
+  >({
     symbol: 'IBM',
     intervals: '5min',
     timeSeriesType: 'INTRADAY',
   });
-  const [resData, setResData] = useState<ResponseData | undefined>();
+  const [resData, setResData] = useState<ResponseDataStocks | undefined>();
   const [dataXAxis, setDataXAxis] = useState<string[] | undefined>(undefined);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const StockTimeSeriesView: React.FC = () => {
       const {
         apiData: { openData, highData, lowData, closeData, volumeData },
         chartXAxis,
-      } = parseData(jsonData, intervals);
+      } = parseDataStocks(jsonData, intervals);
 
       setDataXAxis(chartXAxis);
 

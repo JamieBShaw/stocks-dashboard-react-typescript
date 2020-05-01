@@ -1,14 +1,9 @@
-import { ResponseData } from '../interfaces';
+import { ResponseDataStocks, ResponseDataCrypto } from '../interfaces';
 
-export const parseData = (data: any, interval: string) => {
-  // let chartOpenData: string[] = [];
-  //let chartHighData: string[] = [];
-  //let chartLowData: string[] = [];
-  //let chartCloseData: string[] = [];
-  //let chartVolumeData: string[] = [];
-  let chartXAxis: string[] = [];
+let chartXAxis: string[] = [];
 
-  let apiData: ResponseData | undefined = {
+export const parseDataStocks = (data: any, interval: string) => {
+  let apiData: ResponseDataStocks | undefined = {
     openData: [],
     highData: [],
     lowData: [],
@@ -26,21 +21,42 @@ export const parseData = (data: any, interval: string) => {
     apiData.volumeData.push(
       data[`Time Series (${interval})`][key]['5. volume']
     );
-
-    //chartOpenData.push(data[`Time Series (${interval})`][key]['1. open']);
-    //chartHighData.push(data[`Time Series (${interval})`][key]['2. high']);
-    //chartLowData.push(data[`Time Series (${interval})`][key]['3. low']);
-    //chartCloseData.push(data[`Time Series (${interval})`][key]['4. close']);
-    //chartVolumeData.push(data[`Time Series (${interval})`][key]['5. volume']);
   }
 
   return {
-    //   chartOpenData,
-    //chartHighData,
-    //chartLowData,
-    //chartCloseData,
-    //chartVolumeData,
     apiData,
     chartXAxis,
   };
+};
+
+export const parseDataCrypto = (data: any) => {
+  let apiData: ResponseDataCrypto | undefined = {
+    ask_price: '',
+    bid_price: '',
+    time_zone: '',
+    exchange_rate: '',
+    last_refreshed: '',
+    to_currency_code: '',
+    to_currency_name: '',
+    from_currency_code: '',
+    from_currency_name: '',
+  };
+
+  apiData.from_currency_name =
+    data['Realtime Currency Exchange Rate']['2. From_Currency Name'];
+  apiData.from_currency_code =
+    data['Realtime Currency Exchange Rate']['1. From_Currency Code'];
+  apiData.to_currency_name =
+    data['Realtime Currency Exchange Rate']['4. To_Currency Name'];
+  apiData.to_currency_code =
+    data['Realtime Currency Exchange Rate']['3. To_Currency Code'];
+  apiData.exchange_rate =
+    data['Realtime Currency Exchange Rate']['5. Exchange Rate'];
+  apiData.last_refreshed =
+    data['Realtime Currency Exchange Rate']['6. Last Refreshed'];
+  apiData.time_zone = data['Realtime Currency Exchange Rate']['7. Time Zone'];
+  apiData.bid_price = data['Realtime Currency Exchange Rate']['8. Bid Price'];
+  apiData.ask_price = data['Realtime Currency Exchange Rate']['9. Ask Price'];
+
+  return { apiData, chartXAxis };
 };
