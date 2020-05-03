@@ -22,7 +22,7 @@ const LeftDrawer: React.FC = () => {
     >
       <div className={classes.toolbar} />
       <List>
-        {['Daily', 'Stocks', 'Cryptos'].map((text) => {
+        {['Stocks', 'Forex'].map((text) => {
           const lowerCaseText = text.toLowerCase();
 
           return (

@@ -1,4 +1,8 @@
-import { ResponseDataStocks, ResponseDataCrypto } from '../interfaces';
+import {
+  ResponseDataStocks,
+  ResponseDataCurrencyView,
+  ResponseDataFx,
+} from '../interfaces';
 
 let chartXAxis: string[] = [];
 
@@ -29,8 +33,17 @@ export const parseDataStocks = (data: any, interval: string) => {
   };
 };
 
+export const parseDataFx = (data: any) => {
+  let apiData: ResponseDataFx | undefined = {};
+
+  return {
+    apiData,
+    chartXAxis,
+  };
+};
+
 export const parseDataCurrencyExchange = (data: any) => {
-  let apiData: ResponseDataCrypto | undefined = {
+  let apiData: ResponseDataCurrencyView | undefined = {
     ask_price: '',
     bid_price: '',
     time_zone: '',
@@ -58,5 +71,6 @@ export const parseDataCurrencyExchange = (data: any) => {
   apiData.bid_price = data['Realtime Currency Exchange Rate']['8. Bid Price'];
   apiData.ask_price = data['Realtime Currency Exchange Rate']['9. Ask Price'];
 
-  return { apiData, chartXAxis };
+  return { apiData };
 };
+

@@ -9,13 +9,14 @@ export interface ApiData {
   '5. volume': string[];
 }
 
-export interface SearchParamtersCrypto {
+// For the currecny view component
+export interface SearchParamtersCurrencyView {
   func: string;
   from_currency: string;
   to_currency: string;
 }
 
-export interface ResponseDataCrypto {
+export interface ResponseDataCurrencyView {
   from_currency_code: string;
   from_currency_name: string;
   to_currency_code: string;
@@ -26,6 +27,18 @@ export interface ResponseDataCrypto {
   bid_price: string;
   ask_price: string;
 }
+//
+
+// For the FX echange view and componets
+export interface SearchParametersFxViews {
+  func: string;
+  from_symbol: string;
+  to_symbol: string;
+}
+
+export interface ResponseDataFx {}
+
+//
 
 export interface ResponseDataStocks {
   openData: string[];

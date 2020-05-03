@@ -4,7 +4,7 @@ import LeftDrawer from './components/leftDrawer/LeftDrawer';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomeView from './view/HomeView';
 import StockTimeSeriesView from './view/StockTimeSeriesView';
-import CryptoCurrencyView from './view/CryptoCurrenyView';
+import ForexExchangeView from './view/ForexExchangeView';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <LeftDrawer />
       <Route exact path="/" component={HomeView} />
       <Route exact path="/stocks" component={StockTimeSeriesView} />
-      <Route exact path="/cryptos" component={CryptoCurrencyView} />
+      <Route exact path="/forex" component={ForexExchangeView} />
     </Router>
   );
 }
