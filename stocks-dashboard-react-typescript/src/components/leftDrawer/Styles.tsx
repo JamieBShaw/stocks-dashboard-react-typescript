@@ -16,6 +16,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       width: drawerWidth,
       variant: 'elevation',
       backgroundColor: 'grey',
+      zIndex: -2,
     },
     // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,

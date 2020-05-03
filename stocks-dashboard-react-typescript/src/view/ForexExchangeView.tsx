@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { CurrencyExchangeView } from '../components/cyptoViews/CurrencyExchangeView';
-//import { FxIntraDayView } from '../components/cyptoViews/FxIntraDayView';
-
-import { parseDataCrypto } from '../utils/helperFunctions/parseData';
+import { CurrencyExchangeView } from '../components/currencyViews/CurrencyExchangeView';
+import { FxIntraDayView } from '../components/currencyViews/FxIntraDayView';
+import { FxDailyView } from '../components/currencyViews/FxDailyView';
+import { FxMonthlyView } from '../components/currencyViews/FxMonthly';
+import { parseDataCurrencyExchange } from '../utils/helperFunctions/parseData';
 
 import { SearchParamtersCrypto, ResponseDataCrypto } from '../utils/interfaces';
 
 import { Container, MenuItem, Select } from '@material-ui/core';
+import { FxWeeklyView } from '../components/currencyViews/FxWeeklyView';
 //import { Loading } from '../components/loader/Loading';
 
-const CryptoCurrencyView: React.FC = () => {
+const ForexExchangeView: React.FC = () => {
   const [searchParamters, setSearchParamaters] = useState<
     SearchParamtersCrypto
   >({
@@ -30,7 +32,7 @@ const CryptoCurrencyView: React.FC = () => {
       const rawData = await fetch(url);
       const jsonData = await rawData.json();
 
-      const { apiData, chartXAxis } = parseDataCrypto(jsonData);
+      const { apiData, chartXAxis } = parseDataCurrencyExchange(jsonData);
 
       console.log(jsonData);
       setDataXAxis(chartXAxis);
@@ -57,16 +59,16 @@ const CryptoCurrencyView: React.FC = () => {
   let cryptoView;
   switch (searchParamters.func) {
     case 'FT_INTRADAY':
-      cryptoView = <p>FX_INTRADAY</p>;
+      cryptoView = <FxIntraDayView />;
       break;
     case 'FX_DAILY':
-      cryptoView = <p>FX_DAILY</p>;
+      cryptoView = <FxDailyView />;
       break;
     case 'FX_WEEKLY':
-      cryptoView = <p>FX_WEEKLY</p>;
+      cryptoView = <FxWeeklyView />;
       break;
     case 'FX_MONTHLY':
-      cryptoView = <p>FX_MONTHLY</p>;
+      cryptoView = <FxMonthlyView />;
       break;
   }
 
@@ -105,4 +107,4 @@ const CryptoCurrencyView: React.FC = () => {
   );
 };
 
-export default CryptoCurrencyView;
+export default ForexExchangeView;

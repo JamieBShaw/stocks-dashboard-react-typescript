@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Select, MenuItem, TextField } from '@material-ui/core';
+import {
+  Container,
+  Select,
+  MenuItem,
+  TextField,
+  Paper,
+} from '@material-ui/core';
 import { parseDataStocks } from '../utils/helperFunctions/parseData';
 import { Line } from 'react-chartjs-2';
 import { ResponseDataStocks, SearchParamtersStocks } from '../utils/interfaces';
@@ -102,39 +108,47 @@ const StockTimeSeriesView: React.FC = () => {
         justifyItems: 'center',
       }}
     >
-      <TextField
-        size="medium"
-        type="search"
-        variant="outlined"
-        name="symbol"
-        value={searchParamters.symbol}
-        onChange={handleSearchParameterChange}
-        lang="Company ID"
-      ></TextField>
-      <Select
-        variant="outlined"
-        name="intervals"
-        value={searchParamters.intervals}
-        onChange={handleSearchParameterChange}
+      <Paper
+        style={{ marginBottom: '10px', padding: '10px' }}
+        variant="elevation"
       >
-        <MenuItem value={'5min'}>5 minutes </MenuItem>
-        <MenuItem value={'15min'}>15 minutes </MenuItem>
-        <MenuItem value={'30min'}>30 minutes </MenuItem>
-        <MenuItem value={'60min'}>60 minutes </MenuItem>
-      </Select>
-      <Select
-        variant="outlined"
-        name="searchParamters"
-        value={searchParamters.timeSeriesType}
-        onChange={handleSearchParameterChange}
-      >
-        <MenuItem value={'INTRADAY'}> Intra day trade </MenuItem>
-        <MenuItem value={'DAILY'}> Daily trade </MenuItem>
-        <MenuItem value={'WEEKLY'}> Weekly trade </MenuItem>
-        <MenuItem value={'MONTHLY'}> Monthly trade</MenuItem>
-      </Select>
+        <TextField
+          size="medium"
+          type="search"
+          variant="outlined"
+          name="symbol"
+          value={searchParamters.symbol}
+          onChange={handleSearchParameterChange}
+          lang="Company ID"
+        ></TextField>
+        <Select
+          variant="outlined"
+          name="intervals"
+          value={searchParamters.intervals}
+          onChange={handleSearchParameterChange}
+        >
+          <MenuItem value={'5min'}>5 minutes </MenuItem>
+          <MenuItem value={'15min'}>15 minutes </MenuItem>
+          <MenuItem value={'30min'}>30 minutes </MenuItem>
+          <MenuItem value={'60min'}>60 minutes </MenuItem>
+        </Select>
+        <Select
+          variant="outlined"
+          name="searchParamters"
+          value={searchParamters.timeSeriesType}
+          onChange={handleSearchParameterChange}
+        >
+          <MenuItem value={'INTRADAY'}> Intra day trade </MenuItem>
+          <MenuItem value={'DAILY'}> Daily trade </MenuItem>
+          <MenuItem value={'WEEKLY'}> Weekly trade </MenuItem>
+          <MenuItem value={'MONTHLY'}> Monthly trade</MenuItem>
+        </Select>
+      </Paper>
       {LineChart ? (
-        LineChart
+        <Paper style={{ marginTop: '10px' }} variant="elevation">
+          {' '}
+          {LineChart}{' '}
+        </Paper>
       ) : (
         <div style={{ paddingTop: '50px', paddingRight: '20px' }}>
           <Loading />{' '}

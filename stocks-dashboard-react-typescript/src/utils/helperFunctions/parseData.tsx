@@ -29,7 +29,7 @@ export const parseDataStocks = (data: any, interval: string) => {
   };
 };
 
-export const parseDataCrypto = (data: any) => {
+export const parseDataCurrencyExchange = (data: any) => {
   let apiData: ResponseDataCrypto | undefined = {
     ask_price: '',
     bid_price: '',

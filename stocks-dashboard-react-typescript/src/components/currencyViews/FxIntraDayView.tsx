@@ -4,6 +4,9 @@ interface IProps {
 }
 
 export const FxIntraDayView: React.FC<IProps> = ({ dataXAxis }) => {
-  console.log(dataXAxis);
-  return <>/></>;
+  return (
+    <>
+      <p> INTRADAY </p>
+    </>
+  );
 };
